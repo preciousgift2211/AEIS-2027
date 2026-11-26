@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AEIS 2027 event administration dashboard">
+  <title>AEIS 2027 | Admin HQ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" data-page="dashboard">
+        <span class="brand-mark"><i class="fa-solid fa-book-open"></i><i class="fa-solid fa-star brand-star"></i></span>
+        <span><strong>AEIS 2027</strong><small>Admin Headquarters</small></span>
+      </a>
+
+      <div class="side-label">MAIN MENU</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-page="dashboard"><i class="fa-solid fa-house"></i><span>Dashboard</span></button>
+        <a class="nav-link event-nav-link" href="../AEIS_2027_Landing_Page/index.html" title="Open the public AEIS 2027 landing page"><i class="fa-solid fa-earth-africa"></i><span>The Event</span><i class="fa-solid fa-arrow-up-right-from-square event-external-icon"></i></a>
+        <button class="nav-link" data-page="schools"><i class="fa-solid fa-school"></i><span>School Registrations</span><b class="nav-count" id="schoolNavCount">0</b></button>
+        <button class="nav-link" data-page="individuals"><i class="fa-solid fa-user-group"></i><span>Individual Registrations</span><b class="nav-count" id="individualNavCount">0</b></button>
+        <button class="nav-link" data-page="institutions"><i class="fa-solid fa-building-columns"></i><span>Institution Registrations</span><b class="nav-count" id="institutionNavCount">0</b></button>
+        <button class="nav-link" data-page="sponsors"><i class="fa-solid fa-handshake"></i><span>Sponsorship Applications</span><b class="nav-count" id="sponsorNavCount">0</b></button>
+        <button class="nav-link" data-page="analytics"><i class="fa-solid fa-chart-line"></i><span>Analytics</span></button>
+      </nav>
+
+      <div class="side-label side-label-spaced">PREFERENCES</div>
+      <nav class="side-nav">
+        <button class="nav-link" data-page="notifications"><i class="fa-regular fa-bell"></i><span>Notifications</span><b class="notification-dot" id="notificationNavDot"></b></button>
+        <button class="nav-link" data-page="settings"><i class="fa-solid fa-gear"></i><span>Settings</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-promo"><i class="fa-solid fa-earth-africa"></i><strong>Educate. Empower. Elevate.</strong><small>Building a brighter future through education.</small></div>
+        <button class="nav-link" id="profileButton"><i class="fa-regular fa-circle-user"></i><span>Admin Profile</span></button>
+        <button class="nav-link logout-link" id="logoutButton"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="menuToggle" aria-label="Open navigation"><i class="fa-solid fa-bars"></i></button>
+        <label class="search-box"><i class="fa-solid fa-magnifying-glass"></i><input id="globalSearch" type="search" placeholder="Search registrations..." aria-label="Search registrations"></label>
+        <div class="top-actions">
+          <button class="theme-switch" id="themeToggle"><i class="fa-solid fa-sun"></i><span>Light Mode</span></button>
+          <button class="icon-button notification-button" id="topNotificationButton" aria-label="Open notifications"><i class="fa-regular fa-bell"></i><span class="top-badge" id="topNotificationCount">0</span></button>
+          <button class="profile-chip" id="topProfileButton"><span class="avatar">AD</span><span class="profile-name">Administrator</span><i class="fa-solid fa-chevron-down"></i></button>
+        </div>
+      </header>
+
+      <div class="page-content">
+        <section class="page-view active" id="page-dashboard">
+          <div class="hero-banner">
+            <div class="hero-copy">
+              <span class="eyebrow">EVENT MANAGEMENT PORTAL</span>
+              <h1>Welcome to<br><span>AEIS 2027 HQ</span></h1>
+              <p>Monitor. Manage. Empower.</p>
+              <small>Africa Education Innovation Summit · 25 January 2027</small>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+              <i class="fa-solid fa-graduation-cap"></i>
+              <div class="hero-books"><span></span><span></span><span></span></div>
+              <div class="hero-building"><i class="fa-solid fa-building-columns"></i></div>
+            </div>
+            <div class="hero-glow"></div>
+          </div>
+
+          <div class="section-heading"><div><h2>Dashboard Overview</h2><p>Here is what is happening with your event.</p></div><span class="date-chip"><i class="fa-regular fa-calendar"></i> AEIS 2027</span></div>
+          <div class="stats-grid">
+            <article class="stat-card visitors"><div class="stat-top"><span class="stat-icon"><i class="fa-solid fa-eye"></i></span><span class="trend positive"><i class="fa-solid fa-arrow-trend-up"></i> Live metric</span></div><p>Website Visitors</p><h3 id="visitorTotal">0</h3><small>Recorded website visits</small><div class="sparkline"><span></span></div></article>
+            <article class="stat-card schools"><div class="stat-top"><span class="stat-icon"><i class="fa-solid fa-school"></i></span><span class="trend">Registrations</span></div><p>School Registrations</p><h3 id="schoolTotal">0</h3><small>Schools registered</small><div class="sparkline"><span></span></div></article>
+            <article class="stat-card attendees"><div class="stat-top"><span class="stat-icon"><i class="fa-solid fa-users"></i></span><span class="trend">Registrations</span></div><p>Free Attendees</p><h3 id="individualTotal">0</h3><small>Individual registrations</small><div class="sparkline"><span></span></div></article>
+            <article class="stat-card institutions"><div class="stat-top"><span class="stat-icon"><i class="fa-solid fa-building-columns"></i></span><span class="trend">Registrations</span></div><p>Institution Registrations</p><h3 id="institutionTotal">0</h3><small>Institutions registered</small><div class="sparkline"><span></span></div></article>
+            <article class="stat-card sponsors"><div class="stat-top"><span class="stat-icon"><i class="fa-solid fa-handshake"></i></span><span class="trend">Applications</span></div><p>Sponsorship Applications</p><h3 id="sponsorTotal">0</h3><small>Organisations interested</small><div class="sparkline"><span></span></div></article>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="panel trend-panel">
+              <div class="panel-heading"><div><h3><i class="fa-solid fa-chart-column"></i> Registration Trends</h3><p>Registration activity by category</p></div><select id="trendRange" aria-label="Chart period"><option value="6">Last 6 months</option><option value="3">Last 3 months</option><option value="12">Last 12 months</option></select></div>
+              <div class="chart-legend"><span><i class="legend-dot blue"></i> Schools</span><span><i class="legend-dot cyan"></i> Individuals</span><span><i class="legend-dot purple"></i> Institutions</span><span><i class="legend-dot gold"></i> Sponsors</span></div>
+              <div class="chart-wrap"><canvas id="registrationChart" aria-label="Registration trend chart"></canvas></div>
+            </article>
+            <article class="panel activity-panel">
+              <div class="panel-heading"><div><h3><i class="fa-regular fa-bell"></i> Recent Notifications</h3><p>Your latest activity</p></div><button class="text-button" data-go="notifications">View all <i class="fa-solid fa-arrow-right"></i></button></div>
+              <div class="activity-list" id="recentActivity"><div class="empty-state">No activity yet. New registrations will appear here.</div></div>
+            </article>
+          </div>
+
+          <div class="dashboard-grid bottom-grid">
+            <article class="panel quick-panel">
+              <div class="panel-heading"><div><h3><i class="fa-solid fa-sliders"></i> Quick Notification Settings</h3><p>Choose which updates you want to receive</p></div><button class="text-button" data-go="settings">Manage</button></div>
+              <div class="quick-settings" id="quickSettings"></div>
+            </article>
+            <article class="feature-banner">
+              <div class="trophy"><i class="fa-solid fa-trophy"></i></div><div><span class="eyebrow">AFRICA EDUCATION INNOVATION SUMMIT</span><h3>AEIS 2027</h3><p>Building a brighter future through education and collaboration.</p><a href="../AEIS_2027_Landing_Page/index.html">Open AEIS 2027 landing page <i class="fa-solid fa-arrow-right"></i></a></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="page-view" id="page-schools">
+          <div class="page-title"><div><span class="eyebrow">REGISTRATION MANAGEMENT</span><h1>School Registrations</h1><p>Review and manage schools interested in participating.</p></div><button class="primary-button export-button" data-export="schools"><i class="fa-solid fa-download"></i> Export CSV</button></div>
+          <div class="mini-stats"><div class="mini-stat"><span>Total schools</span><strong id="schoolsPageTotal">0</strong></div><div class="mini-stat"><span>New this month</span><strong id="schoolsNewTotal">0</strong></div></div>
+          <div class="panel table-panel"><div class="table-toolbar"><h3>All school registrations</h3><input class="table-search" data-search="schools" placeholder="Search schools..."></div><div class="table-scroll"><table><thead><tr><th>School</th><th>Contact person</th><th>Email</th><th>Phone</th><th>Students</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody id="schoolsTable"></tbody></table></div></div>
+        </section>
+
+        <section class="page-view" id="page-individuals">
+          <div class="page-title"><div><span class="eyebrow">REGISTRATION MANAGEMENT</span><h1>Individual Registrations</h1><p>Manage free attendee registrations.</p></div><button class="primary-button export-button" data-export="individuals"><i class="fa-solid fa-download"></i> Export CSV</button></div>
+          <div class="mini-stats"><div class="mini-stat"><span>Total free attendees</span><strong id="individualsPageTotal">0</strong></div><div class="mini-stat"><span>New this month</span><strong id="individualsNewTotal">0</strong></div></div>
+          <div class="panel table-panel"><div class="table-toolbar"><h3>All individual registrations</h3><input class="table-search" data-search="individuals" placeholder="Search attendees..."></div><div class="table-scroll"><table><thead><tr><th>Full name</th><th>Email</th><th>Phone</th><th>Category</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody id="individualsTable"></tbody></table></div></div>
+        </section>
+
+        <section class="page-view" id="page-institutions">
+          <div class="page-title"><div><span class="eyebrow">REGISTRATION MANAGEMENT</span><h1>Institution Registrations</h1><p>Review universities and other participating institutions.</p></div><button class="primary-button export-button" data-export="institutions"><i class="fa-solid fa-download"></i> Export CSV</button></div>
+          <div class="mini-stats"><div class="mini-stat"><span>Total institutions</span><strong id="institutionsPageTotal">0</strong></div><div class="mini-stat"><span>New this month</span><strong id="institutionsNewTotal">0</strong></div></div>
+          <div class="panel table-panel"><div class="table-toolbar"><h3>All institution registrations</h3><input class="table-search" data-search="institutions" placeholder="Search institutions..."></div><div class="table-scroll"><table><thead><tr><th>Institution</th><th>Representative</th><th>Email</th><th>Phone</th><th>Date</th><th>Status</th><th>Action</th></tr></thead><tbody id="institutionsTable"></tbody></table></div></div>
+        </section>
+
+        <section class="page-view" id="page-sponsors">
+          <div class="page-title"><div><span class="eyebrow">PARTNERSHIP MANAGEMENT</span><h1>Sponsorship Applications</h1><p>Review organisations and their sponsorship interests.</p></div><button class="primary-button export-button" data-export="sponsors"><i class="fa-solid fa-download"></i> Export CSV</button></div>
+          <div class="mini-stats"><div class="mini-stat"><span>Total applications</span><strong id="sponsorsPageTotal">0</strong></div><div class="mini-stat"><span>Awaiting review</span><strong id="sponsorsPendingTotal">0</strong></div></div>
+          <div class="panel table-panel"><div class="table-toolbar"><h3>All sponsorship applications</h3><input class="table-search" data-search="sponsors" placeholder="Search sponsors..."></div><div class="table-scroll"><table><thead><tr><th>Organisation</th><th>Contact person</th><th>Email</th><th>Phone</th><th>Package</th><th>Type</th><th>Status</th><th>Action</th></tr></thead><tbody id="sponsorsTable"></tbody></table></div></div>
+        </section>
+
+        <section class="page-view" id="page-analytics">
+          <div class="page-title"><div><span class="eyebrow">EVENT PERFORMANCE</span><h1>Analytics</h1><p>Understand visitor activity and registration performance.</p></div></div>
+          <div class="stats-grid analytics-stats"><article class="stat-card visitors"><p>Website Visitors</p><h3 id="analyticsVisitors">0</h3><small>Visits recorded by connected tracking</small></article><article class="stat-card schools"><p>Total Registrations</p><h3 id="analyticsRegistrations">0</h3><small>Across all registration categories</small></article></div>
+          <article class="panel trend-panel analytics-chart"><div class="panel-heading"><div><h3>Registration Trends</h3><p>Category comparison</p></div></div><div class="chart-wrap"><canvas id="analyticsChart"></canvas></div></article>
+          <p class="notice"><i class="fa-solid fa-circle-info"></i> Visitor and registration analytics become live when the website is connected to the backend. This starter dashboard does not invent visitor figures.</p>
+        </section>
+
+        <section class="page-view" id="page-notifications">
+          <div class="page-title"><div><span class="eyebrow">UPDATES & ALERTS</span><h1>Notifications</h1><p>Keep track of new registrations and important activity.</p></div><button class="secondary-button" id="markAllRead"><i class="fa-solid fa-check-double"></i> Mark all as read</button></div>
+          <div class="panel notification-page-panel"><div class="panel-heading"><div><h3>Recent activity</h3><p id="notificationSummary">No notifications yet</p></div></div><div id="allNotifications" class="all-notifications"></div></div>
+        </section>
+
+        <section class="page-view" id="page-settings">
+          <div class="page-title"><div><span class="eyebrow">PREFERENCES</span><h1>Settings</h1><p>Manage your dashboard and notification preferences.</p></div></div>
+          <div class="settings-grid">
+            <article class="panel settings-panel"><div class="panel-heading"><div><h3><i class="fa-solid fa-bell"></i> Notification Preferences</h3><p>Turn individual alerts on or off.</p></div></div><div id="notificationSettings"></div></article>
+            <article class="panel settings-panel"><div class="panel-heading"><div><h3><i class="fa-solid fa-palette"></i> Appearance</h3><p>Choose your preferred dashboard theme.</p></div></div><div class="setting-row"><div><strong>Dashboard theme</strong><small>Switch between navy/cyan and gold/white.</small></div><button class="secondary-button" id="settingsThemeToggle">Switch theme</button></div></article>
+            <article class="panel settings-panel"><div class="panel-heading"><div><h3><i class="fa-solid fa-user-shield"></i> Admin profile</h3><p>Dashboard account information.</p></div></div><div class="profile-detail"><span class="avatar large">AD</span><div><strong>AEIS Administrator</strong><small>Administrator account</small></div></div><p class="notice">Connect a secure authentication system before using this dashboard with real registration data.</p></article>
+          </div>
+        </section>
+      </div>
+      <footer class="main-footer"><span>© 2027 AEIS · Tech2Grassroots Africa</span><span>Educate <b>•</b> Empower <b>•</b> Elevate</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="recordModal" role="dialog" aria-modal="true" aria-labelledby="recordModalTitle">
+    <div class="modal"><button class="modal-close" id="closeRecordModal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button><span class="eyebrow">REGISTRATION DETAILS</span><h2 id="recordModalTitle">Registration</h2><div id="recordDetails"></div><div class="modal-actions"><button class="secondary-button" id="closeRecordButton">Close</button><button class="primary-button" id="deleteRecordButton">Delete record</button></div></div>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
